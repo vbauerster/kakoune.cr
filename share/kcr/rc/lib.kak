@@ -115,24 +115,6 @@ define-command -override -hidden update-selected-text-highlighter -docstring 'up
   }
 }
 
-set-face global Search 'black,bright-yellow'
-
-define-command -override show-search -docstring 'show search' %{
-  remove-hooks global show-search
-  hook -group show-search global RegisterModified '/' %{
-    try %{
-      add-highlighter -override global/search regex "%reg{/}" 0:Search
-    } catch %{
-      remove-highlighter global/search
-    }
-  }
-}
-
-define-command -override hide-search -docstring 'hide search' %{
-  remove-hooks global show-search
-  remove-highlighter global/search
-}
-
 declare-option -hidden str-list palette
 
 define-command -override show-palette -docstring 'show palette' %{
